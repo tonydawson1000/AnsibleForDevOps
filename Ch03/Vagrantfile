@@ -30,4 +30,42 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     db.vm.hostname = "orc-db.test"
     db.vm.network :private_network, ip: "192.168.60.6"
   end
+
+
+  
+  # Provisioning configuration for Ansible.
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "../playbook-install-and-run-chrony.yml"
+
+    ansible.groups = {
+      "app" => ["app[1:2]"]
+    }
+  end
+
+  # Provisioning configuration for Ansible.
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "../playbook-install-pip.yml"
+
+    ansible.groups = {
+      "app" => ["app[1:2]"]
+    }
+  end
+
+  # Provisioning configuration for Ansible.
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "../playbook-install-django.yml"
+
+    ansible.groups = {
+      "app" => ["app[1:2]"]
+    }
+  end
+
+  # Provisioning configuration for Ansible.
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "../playbook-install-and-start-mariadb.yml"
+
+    ansible.groups = {
+      "app" => ["app[1:2]"]
+    }
+  end
 end
