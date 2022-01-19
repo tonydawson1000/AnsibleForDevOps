@@ -32,23 +32,15 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
 
-  
+
   # Provisioning configuration for Ansible.
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "../playbook-install-and-run-chrony.yml"
-
-    ansible.groups = {
-      "app" => ["app[1:2]"]
-    }
   end
 
   # Provisioning configuration for Ansible.
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "../playbook-install-pip.yml"
-
-    ansible.groups = {
-      "app" => ["app[1:2]"]
-    }
   end
 
   # Provisioning configuration for Ansible.
@@ -63,6 +55,26 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   # Provisioning configuration for Ansible.
   config.vm.provision "ansible" do |ansible|
     ansible.playbook = "../playbook-install-and-start-mariadb.yml"
+  end
+
+  # Provisioning configuration for Ansible.
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "../playbook-install-and-start-firewalld.yml"
+  end
+
+  # Provisioning configuration for Ansible.
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "../playbook-configure-firewalld-mariadb.yml"
+  end
+
+  # Provisioning configuration for Ansible.
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "../playbook-configure-mariadb-access.yml"
+  end
+
+  # Provisioning configuration for Ansible.
+  config.vm.provision "ansible" do |ansible|
+    ansible.playbook = "../playbook-create-group-and-user.yml"
 
     ansible.groups = {
       "app" => ["app[1:2]"]
