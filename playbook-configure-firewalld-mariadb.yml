@@ -1,0 +1,24 @@
+---
+- hosts: db
+  become: yes
+
+  tasks:
+  - name: Configure Firewall (firewalld) for MariaDB - Setup 'database' zone.
+    firewalld:
+      zone: database
+      state: present
+      permanent: yes
+
+  - name: Allow access from machines in this range.
+    firewalld:
+      source: 192.168.60.0/24
+      zone: database
+      state: enabled
+      permanent: yes
+
+  - name: Allow TCP access via this port.
+    firewalld:
+      port: 3306/tcp
+      zone: database
+      state: enabled
+      permanent: yes

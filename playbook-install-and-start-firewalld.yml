@@ -1,0 +1,15 @@
+---
+- hosts: db
+  become: yes
+
+  tasks:
+  - name: Ensure Firewall (firewalld) is installed.
+    ansible.builtin.package:
+      name: firewalld
+      state: present
+
+  - name: Ensure Firewall is running.
+    service:
+      name: firewalld
+      state: started
+      enabled: yes

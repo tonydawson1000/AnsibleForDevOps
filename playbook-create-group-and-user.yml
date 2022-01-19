@@ -1,0 +1,15 @@
+---
+- hosts: app
+  become: yes
+
+  tasks:
+  - name: Create the 'admin' group.
+    group:
+      name: admin
+      state: present
+
+  - name: Create the John Doe 'user' and add to the 'admin' group.
+    user:
+      name: 'johndoe'
+      group: admin
+      createhome: yes

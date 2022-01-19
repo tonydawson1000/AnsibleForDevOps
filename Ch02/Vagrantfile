@@ -9,6 +9,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Provisioning configuration for Ansible.
   config.vm.provision "ansible" do |ansible|
-    ansible.playbook = "../ansible/playbooks/install-and-run-chrony.yml"
+    ansible.playbook = "../playbook-install-and-run-chrony.yml"
   end
 end

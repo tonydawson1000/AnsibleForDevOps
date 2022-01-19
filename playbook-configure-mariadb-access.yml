@@ -1,0 +1,16 @@
+---
+- hosts: db
+  become: yes
+
+  tasks:
+  - name: Ensure PyMySQL is installed.
+    ansible.builtin.package:
+      name: python3-PyMySQL
+      state: present
+
+  - name: Create a MySQL User Account.
+    mysql_user:
+      name: django host=%
+      password: 12345
+      priv: '*.*:ALL'
+      state: present

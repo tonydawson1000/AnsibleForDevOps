@@ -1,0 +1,9 @@
+---
+- hosts: app
+  become: yes
+
+  tasks:
+  - name: Ensure Django is installed.
+    pip:
+      name: django
+      state: present
